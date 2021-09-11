@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <h1 v-if="winner" class="mt-3 text-danger">{{ winner }} WINS!</h1>
+    <h1 class="mt-5 font-weight-bold big noselect">BATTLESHIP!</h1>
+    <h1 v-if="winner" class="mt-3 text-prima">{{ winner }} WINS!</h1>
+    <router-link v-if="winner" class="mt-2 text-warning medium" to="/"
+      >GO TO MAIN MENU</router-link
+    >
     <h3 v-if="!winner && !isPlacing" class="mt-5 text-danger">
       <div v-if="currTurn !== 0">
         AI IS THINKING
@@ -13,7 +17,7 @@
       </div>
     </h3>
     <Placement v-if="isPlacing" @ready="OnReady" />
-    <div class="grid-div d-flex mt-5" v-else>
+    <div v-else class="grid-div d-flex mt-5">
       <Grid
         class="mr-5"
         :ships="this.ships"
@@ -33,7 +37,7 @@
 
 <script>
 import { parseConfiguration } from "../classes";
-import Placement from "./Placement.vue";
+import Placement from "../components/Placement.vue";
 import Grid from "../components/Grid.vue";
 import axios from "axios";
 
@@ -76,7 +80,7 @@ export default {
       // get opponent move
       this.currTurn = 1;
 
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // add a little delay
+      // await new Promise((resolve) => setTimeout(resolve, 1000)); // add a little delay
 
       const requestData = JSON.stringify({
         grid: this.$refs.playerGrid.grid,
@@ -101,6 +105,11 @@ export default {
 
       this.currTurn = 0;
     },
+    goToMainMenu() {
+      this.$router.push({
+        name: "home",
+      });
+    },
   },
 };
 </script>
@@ -117,5 +126,9 @@ export default {
   justify-content: center;
   align-items: center;
   width: 90vw;
+}
+
+.btn {
+  display: block;
 }
 </style>

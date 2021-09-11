@@ -1,16 +1,10 @@
 <template>
-  <h1 class="mt-5 font-weight-bold big noselect">BATTLESHIP!</h1>
-  <Game />
+  <div><router-view></router-view></div>
 </template>
 
 <script>
-import Game from "./views/Game.vue";
-
 export default {
   name: "App",
-  components: {
-    Game,
-  },
 };
 </script>
 
@@ -34,8 +28,16 @@ export default {
                                   supported by Chrome and Opera */
 }
 
+.medium {
+  font-size: 2rem;
+}
+
 .big {
   font-size: 4rem;
   font-weight: bold;
+}
+
+.extra-big {
+  font-size: 10rem;
 }
 </style>

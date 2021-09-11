@@ -63,9 +63,9 @@ export default {
         return;
       }
 
-      this.$emit("updateTurn");
       this.grid[i][j] = this.isSquareOcupied(i, j) ? 1 : 2;
       this.ships.forEach((ship) => ship.processHit(i, j));
+      this.$emit("updateTurn");
     },
   },
 };
